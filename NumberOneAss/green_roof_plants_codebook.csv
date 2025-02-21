@@ -1,0 +1,15 @@
+Variable group,Variable,Description
+General,plot,The plot ID
+,year,The year that measurements were taken
+Climate,koppen_climate,Köppen-Geiger climate classification
+,precipitation,Annual precipitation (cm)
+,freeze_thaw,Number of freeze-thaw cycles
+,mean_temp,Mean temperature (degrees C)
+Soil,substrate_depth,Depth of substrate on roof (mm)
+Biodiversity,species_richness,Species richness of roof
+,shannon_diversity,Shannon diversity of roof
+,evenness,Species evenness
+Planting outcomes,bare_substrate,Percentage of bare substrate
+,total_plant_cover,Total plant cover (%)
+,vascular_plant_cover,Vascular plant cover (%)
+,moss,Moss cover (%)
