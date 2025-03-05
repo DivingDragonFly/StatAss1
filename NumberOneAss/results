@@ -1,0 +1,21 @@
+Total Plant Cover:
+Wilcox: data:  tpc_2017 and tpc_2016
+V = 529.5, p-value = 0.9086
+alternative hypothesis: true location shift is not equal to 0
+
+Because the p-value is higher than 0,05 we accept the null hypothesis, there is no significant difference between the groups.
+
+Vascular Plant Cover:
+data:  vpc_2017 and vpc_2016
+V = 790, p-value = 0.6856
+alternative hypothesis: true location shift is not equal to 0
+
+Because the p-value is higher than 0,05 we accept the null hypothesis, there is no significant difference between the groups.
+
+
+Moss:
+data:  moss_2017 and moss_2016
+V = 473.5, p-value = 0.242
+alternative hypothesis: true location shift is not equal to 0
+
+Because the p-value is higher than 0,05 we accept the null hypothesis, there is no significant difference between the groups.
