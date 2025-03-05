@@ -1,0 +1,19 @@
+Research hypotheses:
+There’s a difference between the planting outcomes between years
+There’s a difference for the bare substrate between years
+There’s a difference for total plant cover between years
+There’s a difference for vascular plant cover between years
+There’s a difference for moss between years
+
+Null hypotheses:
+There’s no difference between the planting outcomes between years
+There’s no difference for the bare substrate between years
+There’s no difference for total plant cover between years
+There’s no difference for vascular plant cover between years
+There’s no difference for moss between years
+
+Because we are measuring a sample from the same population in a different time frame we could do a paired t-test, 
+if the assumptions are met. Unfortunately, all variables are not normally distributed. 
+Because of this we need to do a Wilcoxon sign rank test instead to test for a difference in mean in 2016 and 2017. 
+All tests were performed in R, with a significance level of 5%. In order to prepare the data for the Wilcoxon signed rank test 
+we need to make sure both variables have the same length. 
