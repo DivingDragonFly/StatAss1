@@ -93,10 +93,35 @@ boxplot(bare_substrate~year, total_plant_cover~year, vascular_plant_cover~year, 
          fill = c("red")
          )
 
+length(total_plant_cover[year == 2016])
+length(total_plant_cover[year == 2017])
+tpc_2016 <- na.omit(total_plant_cover[year == 2016])
+tpc_2017 <- na.omit(total_plant_cover[year == 2017])
+min_length <- min(length(tpc_2016), length(tpc_2017))
+tpc_2016 <- tpc_2016[1:min_length]
+tpc_2017 <- tpc_2017[1:min_length]
+paired_wilcox <- wilcox.test(tpc_2017, tpc_2016, mu = 0, var.equal = TRUE, paired = TRUE, alternative = "two.sided" )
+paired_wilcox
 
+length(vascular_plant_cover[year == 2016])
+length(vascular_plant_cover[year == 2017])
+vpc_2016 <- na.omit(vascular_plant_cover[year == 2016])
+vpc_2017 <- na.omit(vascular_plant_cover[year == 2017])
+min_length <- min(length(vpc_2016), length(vpc_2017))
+vpc_2016 <- vpc_2016[1:min_length]
+vpc_2017 <- vpc_2017[1:min_length]
+paired_wilcox <- wilcox.test(vpc_2017, vpc_2016, mu = 0, var.equal = TRUE, paired = TRUE, alternative = "two.sided")
+paired_wilcox
 
-
-
+length(moss[year == 2016])
+length(moss[year == 2017])
+moss_2016 <- na.omit(moss[year == 2016])
+moss_2017 <- na.omit(moss[year == 2017])
+min_length <- min(length(moss_2016), length(moss_2017))
+moss_2016 <- moss_2016[1:min_length]
+moss_2017 <- moss_2017[1:min_length]
+paired_wilcox <- wilcox.test(moss_2017, moss_2016, mu = 0, var.equal = TRUE, paired = TRUE, alternative = "two.sided")
+paired_wilcox
 
 
 #How do measurements of roof biodiversity differ across both climate types (variable koppen_climate) and years?
