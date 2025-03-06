@@ -162,7 +162,10 @@ paired_wilcox
 
 #How do measurements of roof biodiversity differ across both climate types (variable koppen_climate) and years?
 bartlett.test(species_richness ~ interaction(koppen_climate, year), data = data)
-two.anova <- aov(species_richness ~ koppen_climate * year, data = data)
+year_factor <- as.factor(data$year)
+koppen_factor <- as.factor(data$koppen_climate)
+two.anova <- aov(species_richness ~koppen_factor * year_factor, data = data)
 summary(two.anova)
 ggline(data, x = "Koppen_climate", y = "species_richness", color = 'year', add = c("mean_se", "dotplot"),
-       palette = c("green", "yellow"), ylab = "species richness", xlab = "climate type"
+       palette = c("green", "yellow"), ylab = "species richness", xlab = "climate type")
+TukeyHSD(two.anova, conf.level = .95)
