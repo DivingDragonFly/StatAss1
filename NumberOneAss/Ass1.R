@@ -169,3 +169,17 @@ summary(two.anova)
 ggline(data, x = "Koppen_climate", y = "species_richness", color = 'year', add = c("mean_se", "dotplot"),
        palette = c("green", "yellow"), ylab = "species richness", xlab = "climate type")
 TukeyHSD(two.anova, conf.level = .95)
+plot(TukeyHSD(two.anova, conf.level = .95), las = 2)
+
+bartlett.test(shannon_diversity ~ interaction(koppen_climate, year), data = data)
+two.anova <- aov(shannon_diversity ~ koppen_climate * year, data = data)
+summary(two.anova)
+residual <- residuals(two.anova)
+shapiro.test(residual)
+friedman.test(shannon_diversity ~ koppen_factor | year_factor, data = data)
+
+bartlett.test(evenn ~ interaction(koppen_climate, year), data = data)
+two.anova <- aov(shannon_diversity ~ koppen_climate * year, data = data)
+summary(two.anova)
+residual <- residuals(two.anova)
+shapiro.test(residual)
