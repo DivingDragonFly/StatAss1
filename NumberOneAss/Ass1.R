@@ -93,6 +93,20 @@ boxplot(bare_substrate~year, total_plant_cover~year, vascular_plant_cover~year, 
          fill = c("red")
          )
 
+
+
+
+
+#normality
+shapiro.test(data$total_plant_cover[data$year == 2016])
+shapiro.test(data$total_plant_cover[data$year == 2017])
+#Q-Q plot
+qqnorm(data$total_plant_cover[year == 2016], main = 'qq plot normality total plant cover 2016', col = 'blue')
+qqline(data$total_plant_cover[year == 2016], col = 'red')
+qqnorm(data$total_plant_cover[year == 2017], main = 'qq plot normality total plant cover 2017', col = 'blue')
+qqline(data$total_plant_cover[year == 2017], col = 'red')
+
+#Wilcoxn signed rank
 length(total_plant_cover[year == 2016])
 length(total_plant_cover[year == 2017])
 tpc_2016 <- na.omit(total_plant_cover[year == 2016])
@@ -100,9 +114,20 @@ tpc_2017 <- na.omit(total_plant_cover[year == 2017])
 min_length <- min(length(tpc_2016), length(tpc_2017))
 tpc_2016 <- tpc_2016[1:min_length]
 tpc_2017 <- tpc_2017[1:min_length]
-paired_wilcox <- wilcox.test(tpc_2017, tpc_2016, mu = 0, var.equal = TRUE, paired = TRUE, alternative = "two.sided" )
+paired_wilcox <- wilcox.test(tpc_2017, tpc_2016, mu = 0, var.equal = TRUE, paired = FALSE, alternative = "two.sided" )
 paired_wilcox
 
+#normality
+shapiro.test(data$vascular_plant_cover[data$year == 2016])
+shapiro.test(data$vascular_plant_cover[data$year == 2017])
+
+#Q-Q plot
+qqnorm(data$vascular_plant_cover[year == 2016], main = 'qq plot normality vascular plant cover 2016', col = 'blue')
+qqline(data$vascular_plant_cover[year == 2016], col = 'red')
+qqnorm(data$vascular_plant_cover[year == 2017], main = 'qq plot normality vascular plant cover 2017', col = 'blue')
+qqline(data$vascular_plant_cover[year == 2017], col = 'red')
+
+#wilcoxon signed rank
 length(vascular_plant_cover[year == 2016])
 length(vascular_plant_cover[year == 2017])
 vpc_2016 <- na.omit(vascular_plant_cover[year == 2016])
@@ -110,9 +135,20 @@ vpc_2017 <- na.omit(vascular_plant_cover[year == 2017])
 min_length <- min(length(vpc_2016), length(vpc_2017))
 vpc_2016 <- vpc_2016[1:min_length]
 vpc_2017 <- vpc_2017[1:min_length]
-paired_wilcox <- wilcox.test(vpc_2017, vpc_2016, mu = 0, var.equal = TRUE, paired = TRUE, alternative = "two.sided")
+paired_wilcox <- wilcox.test(vpc_2017, vpc_2016, mu = 0, var.equal = TRUE, paired = FALSE, alternative = "two.sided")
 paired_wilcox
 
+#Normality
+shapiro.test(data$moss[data$year == 2016])
+shapiro.test(data$moss[data$year == 2017])
+
+#Q-Q plot
+qqnorm(data$moss[year == 2016], main = 'qq plot normality moss 2016', col = 'blue')
+qqline(data$moss[year == 2016], col = 'red')
+qqnorm(data$moss[year == 2017], main = 'qq plot normality moss 2017', col = 'blue')
+qqline(data$moss[year == 2017], col = 'red')
+
+#Wilcoxon signed rank 
 length(moss[year == 2016])
 length(moss[year == 2017])
 moss_2016 <- na.omit(moss[year == 2016])
@@ -120,8 +156,13 @@ moss_2017 <- na.omit(moss[year == 2017])
 min_length <- min(length(moss_2016), length(moss_2017))
 moss_2016 <- moss_2016[1:min_length]
 moss_2017 <- moss_2017[1:min_length]
-paired_wilcox <- wilcox.test(moss_2017, moss_2016, mu = 0, var.equal = TRUE, paired = TRUE, alternative = "two.sided")
+paired_wilcox <- wilcox.test(moss_2017, moss_2016, mu = 0, var.equal = TRUE, paired = FALSE, alternative = "two.sided")
 paired_wilcox
 
 
 #How do measurements of roof biodiversity differ across both climate types (variable koppen_climate) and years?
+bartlett.test(species_richness ~ interaction(koppen_climate, year), data = data)
+two.anova <- aov(species_richness ~ koppen_climate * year, data = data)
+summary(two.anova)
+ggline(data, x = "Koppen_climate", y = "species_richness", color = 'year', add = c("mean_se", "dotplot"),
+       palette = c("green", "yellow"), ylab = "species richness", xlab = "climate type"
