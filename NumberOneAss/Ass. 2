@@ -1,0 +1,21 @@
+codebook <- read.csv("green_roof_plants_codebook.csv")
+data <- read.csv("green_roof_plants_data.csv")
+data <- data.frame(data)
+attach(data)
+codebook
+shapiro.test(precipitation)
+#precipitation is not normally distributed
+shapiro.test(freeze_thaw)
+#freeze is not normally distributed
+shapiro.test(mean_temp)
+#mean temp is not normally disitributed
+#spearmans rank correlation test, due to no normality
+pearson.prec <- cor(precipitation, total_plant_cover, method = "spearman")
+pearson.prec
+#medium positive correlation
+pearson.freeze <- cor(freeze_thaw, total_plant_cover, method = "spearman")
+pearson.freeze
+#weak negative correlation
+pearson.temp <- cor(mean_temp, total_plant_cover, method = "spearman")
+pearson.temp
+#weak / medium correlation
