@@ -19,3 +19,8 @@ pearson.freeze
 pearson.temp <- cor.test(mean_temp, total_plant_cover, method = "spearman")
 pearson.temp
 #weak / medium positive correlation, low p value
+# create a data frame with variables of interest
+newdata <- data.frame(data$mean_temp[year == 2016], data$freeze_thaw[year == 2016], data$precipitation[year == 2016], data$total_plant_cover[year == 2016])
+str(newdata)
+# run the function
+pairs(newdata, panel=panel.smooth)
