@@ -10,12 +10,12 @@ shapiro.test(freeze_thaw)
 shapiro.test(mean_temp)
 #mean temp is not normally disitributed
 #spearmans rank correlation test, due to no normality
-pearson.prec <- cor(precipitation, total_plant_cover, method = "spearman")
+pearson.prec <- cor.test(precipitation, total_plant_cover, method = "spearman")
 pearson.prec
-#medium positive correlation
-pearson.freeze <- cor(freeze_thaw, total_plant_cover, method = "spearman")
+#medium positive correlation, low p value
+pearson.freeze <- cor.test(freeze_thaw, total_plant_cover, method = "spearman")
 pearson.freeze
-#weak negative correlation
-pearson.temp <- cor(mean_temp, total_plant_cover, method = "spearman")
+#weak negative correlation, low p value
+pearson.temp <- cor.test(mean_temp, total_plant_cover, method = "spearman")
 pearson.temp
-#weak / medium correlation
+#weak / medium positive correlation, low p value
