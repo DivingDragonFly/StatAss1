@@ -24,3 +24,11 @@ newdata <- data.frame(data$mean_temp[year == 2016], data$freeze_thaw[year == 201
 str(newdata)
 # run the function
 pairs(newdata, panel=panel.smooth)
+# Question 2
+data_2016 <- subset(data, year == 2016)
+data_2017 <- subset(data, year == 2017)
+library(ggplot2)
+model_2016 <- lm(shannon_diversity ~ precipitation + mean_temp + substrate_depth, data = data_2016)
+summary(model_2016)
+model_2017 <- lm(shannon_diversity ~ precipitation + mean_temp + substrate_depth, data = data_2017)
+summary(model_2017)
